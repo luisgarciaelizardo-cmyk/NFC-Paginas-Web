@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Vicasa</title>
+<meta name="description" content="Contacto de Ferretería Vicasa en Saltillo: WhatsApp de facturación, Instagram y ubicación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef2f9;
+    --bg-deep:#dde6f5;
+    --surface:#ffffff;
+    --navy-deep:#1f2c56;
+    --navy:#2f5aa0;
+    --blue:#6c84c0;
+    --blue-light:#9fb6de;
+    --text:#1c2440;
+    --text-soft:#5b6b8c;
+    --shadow: 20, 32, 64;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0a0f1f;
+      --bg-deep:#05070f;
+      --surface:#121b33;
+      --navy-deep:#a9c0ea;
+      --navy:#7fa0d8;
+      --blue:#5b84c4;
+      --blue-light:#3d5680;
+      --text:#eef2f9;
+      --text-soft:#a4b4d4;
+      --shadow: 0, 0, 0;
+    }
+  }
+
+  :root[data-theme="dark"]{
+    --bg:#0a0f1f;
+    --bg-deep:#05070f;
+    --surface:#121b33;
+    --navy-deep:#a9c0ea;
+    --navy:#7fa0d8;
+    --blue:#5b84c4;
+    --blue-light:#3d5680;
+    --text:#eef2f9;
+    --text-soft:#a4b4d4;
+    --shadow: 0, 0, 0;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    min-height:100%;
+    background:radial-gradient(120% 100% at 50% -10%, var(--bg-deep), var(--bg) 60%);
+    font-family:'Inter', system-ui, sans-serif;
+    color:var(--text);
+  }
+
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 16px;
+  }
+
+  .card{
+    width:100%;
+    max-width:420px;
+    background:var(--surface);
+    border-radius:30px;
+    box-shadow:0 24px 50px -12px rgba(var(--shadow),0.28);
+    overflow:hidden;
+    text-align:center;
+  }
+
+  .accent-bar{
+    height:8px;
+    background:linear-gradient(90deg, var(--navy-deep) 0%, var(--blue) 100%);
+  }
+
+  .header{
+    padding:32px 24px 8px;
+  }
+
+  .logo-badge{
+    display:inline-block;
+    background:#ffffff;
+    border-radius:22px;
+    padding:18px 22px;
+    box-shadow:0 10px 24px -6px rgba(var(--shadow),0.22);
+  }
+
+  .logo-badge img{
+    display:block;
+    height:210px;
+    width:auto;
+    max-width:56vw;
+  }
+
+  .business{ padding:20px 24px 4px; }
+
+  .business-name{
+    font-family:'Archivo', sans-serif;
+    font-size:19px;
+    font-weight:800;
+    letter-spacing:0.2px;
+    color:var(--navy-deep);
+    margin:0;
+  }
+
+  .business-role{
+    font-size:13.5px;
+    color:var(--text-soft);
+    margin-top:6px;
+  }
+
+  .links{
+    padding:22px 24px 28px;
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+  }
+
+  .link-btn{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 18px;
+    border-radius:18px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    color:#fff;
+    transition:transform .15s ease;
+    box-shadow:0 8px 18px -6px rgba(var(--shadow),0.35);
+  }
+
+  .link-btn:active{ transform:scale(0.97); }
+
+  .link-btn .label-group{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    line-height:1.25;
+  }
+
+  .link-btn .label-sub{
+    font-size:11.5px;
+    font-weight:500;
+    opacity:0.85;
+  }
+
+  .link-btn .icon{
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.22);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .link-btn .icon svg{ width:19px; height:19px; fill:#fff; }
+
+  .link-btn.whatsapp{ background:linear-gradient(135deg,#2fbf71,#1a9c58); }
+  .link-btn.instagram{ background:linear-gradient(135deg,var(--navy-deep),var(--blue)); }
+  .link-btn.location{ background:linear-gradient(135deg,var(--navy),var(--blue-light)); }
+
+  .footer-note{
+    padding:0 24px 22px;
+    font-size:11.5px;
+    letter-spacing:0.3px;
+    color:var(--text-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="accent-bar"></div>
+
+  <div class="header">
+    <div class="logo-badge">
+      <img src="../assets/vicasa-logo.png" alt="Vicasa">
+    </div>
+  </div>
+
+  <div class="business">
+    <p class="business-name">Ferretería Vicasa</p>
+    <p class="business-role">Saltillo, Coahuila</p>
+  </div>
+
+  <div class="links">
+
+    <a class="link-btn whatsapp" href="https://wa.me/528442552330?text=Hola%2C%20necesito%20apoyo%20con%20facturaci%C3%B3n" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.478 2 12c0 1.85.505 3.583 1.383 5.07L2 22l5.075-1.352A9.945 9.945 0 0 0 12.001 22C17.523 22 22 17.523 22 12S17.523 2 12.001 2zm0 18.06c-1.66 0-3.204-.492-4.5-1.335l-.323-.204-3.012.803.804-2.936-.21-.303A8.02 8.02 0 0 1 3.94 12c0-4.45 3.612-8.06 8.061-8.06 4.45 0 8.06 3.61 8.06 8.06 0 4.449-3.61 8.06-8.06 8.06z"/></svg>
+      </span>
+      <span class="label-group">
+        WhatsApp
+        <span class="label-sub">Facturación</span>
+      </span>
+    </a>
+
+    <a class="link-btn instagram" href="https://www.instagram.com/vicasasaltillo/" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </span>
+      Instagram
+    </a>
+
+    <a class="link-btn location" href="https://maps.app.goo.gl/mbE79vevSz5VKTdt8?g_st=iw" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      </span>
+      Ubicación
+    </a>
+
+  </div>
+
+  <div class="footer-note">Ferretería Vicasa &middot; Saltillo, Coahuila</div>
+
+</div>
+
+</body>
+</html>
