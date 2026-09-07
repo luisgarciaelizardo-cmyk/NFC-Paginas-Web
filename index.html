@@ -77,57 +77,31 @@
     text-align:center;
   }
 
+  .accent-bar{
+    height:8px;
+    background:linear-gradient(90deg, var(--navy) 0%, var(--teal) 100%);
+  }
+
   .header{
-    position:relative;
-    background:linear-gradient(165deg, var(--navy) 0%, var(--teal) 100%);
-    padding:40px 24px 46px;
-    overflow:hidden;
+    padding:30px 24px 6px;
   }
 
-  .header .swell{
-    position:absolute;
-    left:0; right:0; bottom:-2px;
-    width:100%;
-    height:34px;
+  .logo-badge{
+    display:inline-block;
+    background:#ffffff;
+    border-radius:22px;
+    padding:16px 18px 12px;
+    box-shadow:0 10px 24px -6px rgba(var(--shadow),0.22);
+  }
+
+  .logo-badge img{
     display:block;
+    width:216px;
+    max-width:60vw;
+    height:auto;
   }
 
-  .logo-wrap{
-    position:relative;
-    width:112px;
-    height:112px;
-    margin:0 auto 14px;
-    background:#fff;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 10px 24px rgba(6,32,44,0.25);
-  }
-
-  .logo-wrap svg{ width:72px; height:72px; }
-
-  .brand{
-    position:relative;
-    font-family:'Baloo 2', 'Inter', sans-serif;
-    color:#ffffff;
-    font-size:30px;
-    font-weight:800;
-    letter-spacing:0.3px;
-    margin:4px 0 4px;
-  }
-
-  .tagline{
-    position:relative;
-    color:#eafffb;
-    font-size:13px;
-    font-weight:500;
-    letter-spacing:0.4px;
-    text-transform:uppercase;
-    opacity:0.92;
-  }
-
-  .doctor{ padding:26px 24px 4px; }
+  .doctor{ padding:22px 24px 4px; }
 
   .doctor-name{
     font-family:'Baloo 2', sans-serif;
@@ -195,37 +169,12 @@
 
 <div class="card">
 
-  <div class="header">
-    <div class="logo-wrap">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#0e5f8f"/>
-            <stop offset="100%" stop-color="#2fd0c8"/>
-          </linearGradient>
-        </defs>
-        <path fill="url(#waveGrad)" d="
-          M20,140 C55,140 65,120 65,105 C65,90 75,80 88,80
-          C101,80 108,92 100,102 C94,109 84,106 84,98
-          C84,92 90,90 94,93 C94,88 88,84 82,86
-          C74,89 72,99 80,107 C90,117 108,113 112,96
-          C117,76 100,58 78,58 C52,58 40,80 40,100
-          C40,118 30,130 12,132 Z"/>
-        <path fill="url(#waveGrad)" d="
-          M105,142 C130,142 138,126 138,114 C138,102 146,94 156,94
-          C166,94 171,103 165,110 C161,115 153,113 153,107
-          C153,102 158,101 160,103 C160,99 156,96 151,98
-          C145,100 144,107 150,113 C157,120 170,117 173,105
-          C177,90 165,76 149,76 C130,76 121,92 121,108
-          C121,122 113,131 99,133 Z"/>
-      </svg>
-    </div>
-    <div class="brand">Aqua Medik</div>
-    <div class="tagline">Rehabilitación Física y Neurológica</div>
+  <div class="accent-bar"></div>
 
-    <svg class="swell" viewBox="0 0 420 34" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,18 C70,34 140,2 210,14 C280,26 350,6 420,18 L420,34 L0,34 Z" fill="var(--surface)"/>
-    </svg>
+  <div class="header">
+    <div class="logo-badge">
+      <img src="assets/aqua-medik-logo.png" alt="Aqua Medik - Rehabilitación Física y Neurológica">
+    </div>
   </div>
 
   <div class="doctor">
