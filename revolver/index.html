@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Revolver Cantina</title>
+<meta name="description" content="Revolver Cantina Saloon: menú completo, ubicación, Facebook, TikTok y reseñas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0c;
+    --surface:#171717;
+    --surface-raised:#1e1e1e;
+    --red:#c81c1c;
+    --red-deep:#8f1414;
+    --cream:#f2ede3;
+    --text-soft:#b3a99c;
+    --line:#2c2c2c;
+    --shadow: 0, 0, 0;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    min-height:100%;
+    background:var(--bg);
+    font-family:'Inter', system-ui, sans-serif;
+    color:var(--cream);
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+    padding:0 0 40px;
+  }
+
+  .page{
+    width:100%;
+    max-width:460px;
+  }
+
+  .accent-bar{
+    height:8px;
+    background:linear-gradient(90deg, var(--red-deep) 0%, var(--red) 100%);
+  }
+
+  .header{
+    text-align:center;
+    padding:28px 24px 14px;
+  }
+
+  .logo-badge img{
+    display:block;
+    width:190px;
+    max-width:56vw;
+    height:auto;
+    margin:0 auto;
+  }
+
+  .header-role{
+    font-size:13px;
+    color:var(--text-soft);
+    letter-spacing:0.4px;
+    margin-top:10px;
+  }
+
+  .quick-links{
+    padding:6px 20px 20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+  }
+
+  .qlink{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:12px 14px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--cream);
+    background:var(--surface);
+    border:1px solid var(--line);
+    transition:transform .15s ease, border-color .15s ease;
+  }
+
+  .qlink:active{ transform:scale(0.97); }
+
+  .qlink .icon{
+    width:34px;
+    height:34px;
+    flex:0 0 34px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .qlink .icon svg{ width:17px; height:17px; fill:#fff; }
+
+  .qlink.location .icon{ background:linear-gradient(135deg,var(--red),var(--red-deep)); }
+  .qlink.reviews .icon{ background:linear-gradient(135deg,#e0a020,#a8720f); }
+  .qlink.facebook .icon{ background:linear-gradient(135deg,#1f78c9,#0e4f8f); }
+  .qlink.tiktok .icon{ background:#000; border:1px solid #333; }
+
+  .menu-section{
+    padding:8px 20px 0;
+  }
+
+  .menu-title{
+    font-family:'Playfair Display', serif;
+    font-weight:900;
+    font-size:26px;
+    text-align:center;
+    color:var(--cream);
+    margin:10px 0 4px;
+  }
+
+  .menu-subtitle{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--text-soft);
+    margin-bottom:18px;
+  }
+
+  details.menu-cat{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+
+  details.menu-cat > summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 18px;
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:19px;
+    color:var(--red);
+  }
+
+  details.menu-cat > summary::-webkit-details-marker{ display:none; }
+
+  details.menu-cat > summary::after{
+    content:"+";
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:20px;
+    color:var(--text-soft);
+    transition:transform .2s ease;
+  }
+
+  details.menu-cat[open] > summary::after{
+    content:"–";
+  }
+
+  .cat-count{
+    font-family:'Inter', sans-serif;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--text-soft);
+    background:var(--surface-raised);
+    border-radius:999px;
+    padding:2px 9px;
+    margin-right:auto;
+    margin-left:10px;
+  }
+
+  .cat-items{
+    padding:2px 18px 14px;
+    border-top:1px solid var(--line);
+  }
+
+  .item-row{
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+    padding:8px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:14px;
+  }
+
+  .item-row:last-child{ border-bottom:none; }
+
+  .item-name{
+    color:var(--cream);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .item-dots{
+    flex:1;
+    border-bottom:1px dotted #4a4a4a;
+    margin-bottom:4px;
+  }
+
+  .item-price{
+    color:var(--red);
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+
+  .footer-note{
+    text-align:center;
+    padding:24px 24px 6px;
+    font-size:11.5px;
+    letter-spacing:0.3px;
+    color:var(--text-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="accent-bar"></div>
+
+  <div class="header">
+    <div class="logo-badge">
+      <img src="../assets/revolver-logo.png" alt="Revolver Cantina Saloon">
+    </div>
+    <p class="header-role">Cerveza &middot; Carnita &middot; Música</p>
+  </div>
+
+  <div class="quick-links">
+
+    <a class="qlink location" href="https://maps.app.goo.gl/Nvhk8m1N8kZAdmUp9" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      </span>
+      Ubicación
+    </a>
+
+    <a class="qlink reviews" href="https://search.google.com/local/writereview?placeid=ChIJwd6mVgBziIYR9Gw3acgRinU" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+      </span>
+      Reseña
+    </a>
+
+    <a class="qlink facebook" href="https://www.facebook.com/share/18qaWZ4E5G/?mibextid=wwXIfr" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.508 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.877h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94z"/></svg>
+      </span>
+      Facebook
+    </a>
+
+    <a class="qlink tiktok" href="https://www.tiktok.com/@revolver.cantina4" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
+      </span>
+      TikTok
+    </a>
+
+  </div>
+
+  <div class="menu-section">
+    <p class="menu-title">Menú</p>
+    <p class="menu-subtitle">Toca una categoría para ver los precios</p>
+
+    <details class="menu-cat" open>
+      <summary>
+        <span class="cat-name">Platillo a la Carta</span>
+        <span class="cat-count">10</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Burrito Revolver</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$60.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Guacamole con Asada</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$99.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Nachos Revolver</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$99.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Papas Francesas Revolver</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$99.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Parrillada</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$360.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Queso Fundido</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$150.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Taco Asada</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$22.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Taco Pastor</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$22.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Orden de Tacos</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$80.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Tostada Aguachile</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Cerveza</span>
+        <span class="cat-count">21</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Ambar</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Amstel</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Bohemia</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Caguama Familiar</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$80.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Caguama Miller</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$90.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Carta Blanca</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$39.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Cerveza Alemana</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$25.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Corona Clara</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Corona Golden</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Coronita 1/4</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$29.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Cubeta 1/4 Coronita</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$250.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Indio</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Miller High Life</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Miller Lite</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Modelo Especial</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$40.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Negra Modelo</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Tecate Light</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Tecate / Corona Cero</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Ultra</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Victoria</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">XX Lager</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$39.00</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Refrescos</span>
+        <span class="cat-count">8</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Peñafiel 355ml</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Agua Natural</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$35.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Agua Quina</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Boost</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Coca Cola 355ml</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Limonada Nat/Mineral</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Squirt o Fresca 355ml</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$37.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Topo Chico</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$40.00</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Cocteleria</span>
+        <span class="cat-count">15</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Botella Vino Tinto</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$390.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Bufandas 2x1</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$199.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Caribe Cooler</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$47.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Clamato</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$47.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Clamato Sabinas</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$110.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Tanqueray</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$120.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Baileys</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$95.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Hpnotiq</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$150.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Jager</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$140.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Licor 43</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$120.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Hoja Sen</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Mezcal</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$140.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Michelada</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$47.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Perlas Negras 2x1</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$180.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Revolcada</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$99.00</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Vodka</span>
+        <span class="cat-count">4</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Botella Oso Negro</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$550.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Smirnoff Tamarindo</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$670.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Vodka Oso Negro</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$70.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Smirnoff Tamarindo</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$90.00</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Ron</span>
+        <span class="cat-count">13</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Botella Bacardi Blanco</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$650.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Bacardi Solera</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$750.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Capitan Morgan</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$650.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Presidente</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$650.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Torres 10</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$890.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Zacapa</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,900.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Torres 10</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$110.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Bacardi Blanco</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Bacardi Solera</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$95.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Capitan Morgan</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$95.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Don Pedro</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Presidente</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Zacapa</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$160.00</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Whyskey</span>
+        <span class="cat-count">10</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Black &amp; White</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$670.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Black Label</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,550.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Buchannas 12</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,400.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Chivas Regal 12</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,300.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Red Label</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$890.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Black Label</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$160.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Black &amp; White</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$100.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Buchannas 12</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$140.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Chivas 12</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$130.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Red Label</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$115.00</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Tequilas</span>
+        <span class="cat-count">20</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Botella 1800</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,600.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella 7 Leguas</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,500.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Centenario 1 LT</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,000.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Centenario Plata</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$895.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Don Julio 70 Cristalino</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,550.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Don Julio Blanco</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,250.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Hornitos</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$870.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Jose Cuervo</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$670.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Maestro Dobel</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$1,350.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Botella Tradicional Reposado</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$670.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 7 Leguas</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$150.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 1800 Cristalino</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$160.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Centenario Plata</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$115.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Codorniz</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Don Julio 70</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$155.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Don Julio Blanco</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$125.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Hornitos</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$115.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Jose Cuervo</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$95.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Maestro Dobel</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$150.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Copa 2x1 Tradicional Reposado</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$95.00</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Tiendita</span>
+        <span class="cat-count">8</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <span class="item-name">Aceitunas</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Cacahuate Cascara</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$40.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Cacahuate Salado</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$25.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Carne Seca</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$70.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Chicharrones</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$38.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Gomitas</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$25.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Halls</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$25.00</span>
+        </div>
+        <div class="item-row">
+          <span class="item-name">Papas Fritas</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$35.00</span>
+        </div>
+      </div>
+    </details>
+
+
+  </div>
+
+  <div class="footer-note">Revolver Cantina Saloon &middot; Cerveza · Carnita · Música</div>
+
+</div>
+
+</body>
+</html>
