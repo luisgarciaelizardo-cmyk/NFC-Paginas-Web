@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Tito's</title>
+<meta name="description" content="Tito's, las alitas adictivas del norte: menú completo, WhatsApp, ubicación, Facebook e Instagram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbead9;
+    --bg-deep:#f6d7b5;
+    --surface:#ffffff;
+    --orange:#f4530e;
+    --orange-deep:#c73a0a;
+    --orange-light:#fa8a3c;
+    --green:#7fbb5a;
+    --dark:#241a12;
+    --text:#2b1c12;
+    --text-soft:#93765f;
+    --line:#f0ddc4;
+    --shadow: 196, 90, 20;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    min-height:100%;
+    background:radial-gradient(120% 100% at 50% -10%, var(--bg-deep), var(--bg) 55%);
+    font-family:'Inter', system-ui, sans-serif;
+    color:var(--text);
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+    padding:0 0 40px;
+  }
+
+  .page{
+    width:100%;
+    max-width:460px;
+  }
+
+  .accent-bar{
+    height:8px;
+    background:linear-gradient(90deg, var(--orange-deep) 0%, var(--orange-light) 100%);
+  }
+
+  .header{
+    text-align:center;
+    padding:26px 24px 6px;
+  }
+
+  .logo-badge{
+    display:inline-block;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 12px 26px -8px rgba(var(--shadow),0.45);
+  }
+
+  .logo-badge img{
+    display:block;
+    width:100px;
+    height:100px;
+  }
+
+  .brand{
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:30px;
+    color:var(--orange-deep);
+    margin:12px 0 0;
+  }
+
+  .tagline{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.4px;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    margin-top:2px;
+  }
+
+  .quick-links{
+    padding:16px 20px 20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+  }
+
+  .qlink{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:12px 14px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:13.5px;
+    color:#fff;
+    transition:transform .15s ease;
+    box-shadow:0 8px 16px -6px rgba(var(--shadow),0.4);
+  }
+
+  .qlink:active{ transform:scale(0.97); }
+
+  .qlink .icon{
+    width:34px;
+    height:34px;
+    flex:0 0 34px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.24);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .qlink .icon svg{ width:17px; height:17px; fill:#fff; }
+
+  .qlink.whatsapp{ background:linear-gradient(135deg,#2fbf71,#1a9c58); grid-column:1 / -1; }
+  .qlink.location{ background:linear-gradient(135deg,var(--orange),var(--orange-deep)); }
+  .qlink.facebook{ background:linear-gradient(135deg,#1f78c9,#12466e); }
+  .qlink.instagram{ background:linear-gradient(135deg,var(--orange-deep),var(--orange-light)); grid-column:1 / -1; }
+
+  .menu-section{
+    padding:8px 20px 0;
+  }
+
+  .menu-title{
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:28px;
+    text-align:center;
+    color:var(--dark);
+    margin:12px 0 4px;
+  }
+
+  .menu-subtitle{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--text-soft);
+    margin-bottom:18px;
+  }
+
+  details.menu-cat{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+
+  details.menu-cat > summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 18px;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:17px;
+    color:var(--orange-deep);
+  }
+
+  details.menu-cat > summary::-webkit-details-marker{ display:none; }
+
+  .cat-name{ flex:1; }
+
+  .cat-sub{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:11.5px;
+    color:var(--text-soft);
+    text-transform:none;
+    letter-spacing:0;
+  }
+
+  details.menu-cat > summary::after{
+    content:"+";
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:20px;
+    color:var(--text-soft);
+  }
+
+  details.menu-cat[open] > summary::after{
+    content:"\2013";
+  }
+
+  .cat-count{
+    font-family:'Inter', sans-serif;
+    font-size:11.5px;
+    font-weight:700;
+    color:var(--orange-deep);
+    background:var(--bg);
+    border-radius:999px;
+    padding:2px 9px;
+  }
+
+  .cat-items{
+    padding:2px 18px 14px;
+    border-top:1px solid var(--line);
+  }
+
+  .item-row{
+    padding:10px 0;
+    border-bottom:1px dashed var(--line);
+  }
+
+  .item-row:last-child{ border-bottom:none; }
+
+  .item-main{
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+    font-size:14px;
+  }
+
+  .item-name{
+    color:var(--text);
+    font-weight:600;
+  }
+
+  .item-size{
+    color:var(--text-soft);
+    font-weight:500;
+    font-size:12px;
+    margin-left:6px;
+    white-space:nowrap;
+  }
+
+  .item-dots{
+    flex:1;
+    border-bottom:1px dotted #d8c3a5;
+    margin-bottom:4px;
+  }
+
+  .item-price{
+    color:var(--orange-deep);
+    font-weight:700;
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+
+  .item-note{
+    font-size:12px;
+    color:var(--text-soft);
+    margin-top:3px;
+    line-height:1.35;
+  }
+
+  .footer-note{
+    text-align:center;
+    padding:24px 24px 6px;
+    font-size:11.5px;
+    letter-spacing:0.3px;
+    color:var(--text-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="accent-bar"></div>
+
+  <div class="header">
+    <div class="logo-badge">
+      <img src="../assets/titos-logo.png" alt="Tito's">
+    </div>
+    <p class="brand">Tito's</p>
+    <p class="tagline">Alitas Adictivas del Norte</p>
+  </div>
+
+  <div class="quick-links">
+
+    <a class="qlink whatsapp" href="https://wa.me/528445029265" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.478 2 12c0 1.85.505 3.583 1.383 5.07L2 22l5.075-1.352A9.945 9.945 0 0 0 12.001 22C17.523 22 22 17.523 22 12S17.523 2 12.001 2zm0 18.06c-1.66 0-3.204-.492-4.5-1.335l-.323-.204-3.012.803.804-2.936-.21-.303A8.02 8.02 0 0 1 3.94 12c0-4.45 3.612-8.06 8.061-8.06 4.45 0 8.06 3.61 8.06 8.06 0 4.449-3.61 8.06-8.06 8.06z"/></svg>
+      </span>
+      Pide por WhatsApp
+    </a>
+
+    <a class="qlink location" href="https://maps.app.goo.gl/f1RggrJw1QibygDP9?g_st=iw" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      </span>
+      Visítanos
+    </a>
+
+    <a class="qlink facebook" href="https://www.facebook.com/share/1RpiXTLw18/?mibextid=wwXIfr" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.508 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.877h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94z"/></svg>
+      </span>
+      Facebook
+    </a>
+
+    <a class="qlink instagram" href="https://www.instagram.com/titosalitasadictivas.saltillo?stkn=MTVrdHZ5dnpqaWNjZg==" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </span>
+      Instagram
+    </a>
+
+  </div>
+
+  <div class="menu-section">
+    <p class="menu-title">Menú</p>
+    <p class="menu-subtitle">Toca una categoría para ver los platillos</p>
+
+    <details class="menu-cat" open>
+      <summary>
+        <span class="cat-name">Salsas <span class='cat-sub'>$29 c/u &middot; 40 gr</span></span>
+        <span class="cat-count">11</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">La Luisifer</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+<div class="item-note">🌶️🌶️🌶️🌶️ La salsa que es leyenda. Solo para pros.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Tito's</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+<div class="item-note">🌶️🌶️🌶️ La que le da nombre al restaurante. Acidita y enchilosa.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Habanero (original de Tito's)</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+<div class="item-note">🌶️🌶️🌶️ Habanero y jugo de limón natural.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Pepino Habanero</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+<div class="item-note">🌶️🌶️ Fresh &amp; hot, con el sabor fresco del pepino.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Mango (original de Tito's)</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+<div class="item-note">🌶️ Chiles secos, limón natural y mango. Agridulce.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Piña (original de Tito's)</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+<div class="item-note">🌶️ Sweet &amp; spicy, con un toquecito de picante.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Tito's de la que no pica</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+<div class="item-note">El sabor top a chiles secos y limón, sin picor.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">BBQ</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+<div class="item-note">Sabor clásico, dulce, ahumado y espeso.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aderezo Blue Cheese<span class="item-size">40 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$19.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aderezo Ranch<span class="item-size">40 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$19.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aderezo Jalapeño<span class="item-size">40 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$19.00</span>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">La Previa &mdash; Pa' Compartir</span>
+        <span class="cat-count">11</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Papas Especiales<span class="item-size">321 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$135.00</span>
+          </div>
+<div class="item-note">Papas lemon pepper bañadas con Tito's, Habanero, BBQ y Blue Cheese.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Papas Especiales · 1/2 Orden<span class="item-size">221 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$97.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Papa Asada (¡Nuevo!)<span class="item-size">420 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$189.00</span>
+          </div>
+<div class="item-note">Papa asada, papas de galeana y lemon pepper, salsa de queso y Tito's.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Papas Lemon Pepper<span class="item-size">311 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$95.00</span>
+          </div>
+<div class="item-note">El toque ácido del limón y pimienta negra.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Sampler (3-4 personas)</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$389.00</span>
+          </div>
+<div class="item-note">4 dedos de queso, boneless de coliflor, papas y jalapeño pop-its. 3 dips.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Cheese Sticks (2-3 personas)<span class="item-size">8 pz</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$99.00</span>
+          </div>
+<div class="item-note">Empanizados y gloriosos. Dipea en marinara, salsa o aderezo.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Jalapeño Pop-Its (1-2 personas) ¡Nuevo!<span class="item-size">4 pz</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$115.00</span>
+          </div>
+<div class="item-note">Rellenos de queso crema y mix de quesos, ultra crujientes.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Anillos de Cebolla (2-3 personas)<span class="item-size">200 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$170.00</span>
+          </div>
+<div class="item-note">Aros de cebolla clásicos con el toque Tito's.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Elotito (1-2 personas)<span class="item-size">1 pz</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$115.00</span>
+          </div>
+<div class="item-note">Asado a la perfección, con mantequilla y salsa Tito's.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Boneless de Coliflor (2-3 personas)<span class="item-size">250 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$105.00</span>
+          </div>
+<div class="item-note">Crujiente y tierna por dentro. Incluye una salsa.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Anillos y Papas (2-3 personas)<span class="item-size">200 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$135.00</span>
+          </div>
+<div class="item-note">100 gr de aros de cebolla + 100 gr de papas lemon pepper.</div>        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Tenders</span>
+        <span class="cat-count">9</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Chicken Tenders<span class="item-size">200 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$209.00</span>
+          </div>
+<div class="item-note">100% pechuga empanizada, el más famoso de Monterrey.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Chicken Tenders · Agrandados<span class="item-size">300 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$255.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Tenders Especiales<span class="item-size">200 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$220.00</span>
+          </div>
+<div class="item-note">Papas lemon pepper + tenders + lluvia de Tito's, Habanero, BBQ y Blue Cheese.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Tenders Especiales · Agrandados<span class="item-size">300 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$270.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Tenders Arturo<span class="item-size">220 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$215.00</span>
+          </div>
+<div class="item-note">100% pechuga a la parrilla. Máximo sabor, con ensalada.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Tenders Manuela · 3 Tiras</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$215.00</span>
+          </div>
+<div class="item-note">Empanizado hecho a mano. Incluye papas lemon pepper.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Tenders Manuela · 5 Tiras</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$255.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Wrap<span class="item-size">100 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$190.00</span>
+          </div>
+<div class="item-note">Tenders de pechuga envueltos con lechuga, col y zanahoria.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Big Tenders (5-6 personas)<span class="item-size">1000 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$649.00</span>
+          </div>
+<div class="item-note">Un kilo de tenders de pechuga. Incluye salsa y aderezo.</div>        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Alitas, Muslitos y Boneless</span>
+        <span class="cat-count">9</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">3 Alitas · Snack<span class="item-size">250 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$135.00</span>
+          </div>
+<div class="item-note">Norteño style, 100% asadas, no fritas.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">6 Alitas · Personal<span class="item-size">500 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$209.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">12 Alitas (2-3 personas)<span class="item-size">1000 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$415.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Muslitos · Personal<span class="item-size">500 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$205.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Kilo de Muslitos (2-3 personas)<span class="item-size">1000 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$400.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Boneless<span class="item-size">220 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$215.00</span>
+          </div>
+<div class="item-note">Pollo súper tierno y crujiente. Incluye salsa, aderezo y papas.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Big Boneless (4-5 personas)<span class="item-size">1000 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$670.00</span>
+          </div>
+<div class="item-note">Boneless de pechuga empanizado. Incluye 160ml salsa y 160ml aderezo.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Boneless de Coliflor (Plant Based)<span class="item-size">250 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$177.00</span>
+          </div>
+<div class="item-note">Crujiente y tierna. Incluye salsa, aderezo y papas lemon pepper.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Mac &amp; Tito's<span class="item-size">250 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$220.00</span>
+          </div>
+<div class="item-note">Macarrones en salsa de queso original, con boneless de pechuga encima.</div>        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Burgers, Sandwiches y Bowls</span>
+        <span class="cat-count">17</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">La Uno<span class="item-size">140 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$145.00</span>
+          </div>
+<div class="item-note">Carne molida de arrachera a la parrilla. Mix de quesos, mayo, lechuga, tomate y cebolla.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">La Uno · Con papas</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$175.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">La Doble Uno<span class="item-size">280 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$235.00</span>
+          </div>
+<div class="item-note">Doble carne, doble queso.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">La Doble Uno · Con papas</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$265.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aloha Burger<span class="item-size">140 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$185.00</span>
+          </div>
+<div class="item-note">Arrachera, mix de quesos, salsa BBQ, piña asada y aros de cebolla.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aloha Burger · Con papas</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$215.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aloha Burger Doble<span class="item-size">280 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$259.00</span>
+          </div>
+<div class="item-note">Doble carne, doble queso.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aloha Burger Doble · Con papas</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$289.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Chicken T'Sándwich<span class="item-size">170 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$185.00</span>
+          </div>
+<div class="item-note">Pechuga marinada, empanizada o Arturo, bañada en tu salsa favorita.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Chicken T'Sándwich · Con papas</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$215.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Ensalada Greenhouse<span class="item-size">260 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$149.00</span>
+          </div>
+<div class="item-note">Lechugas frescas, col morada, zanahoria, jitomate, pepino y queso parmesano.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Ensalada Henhouse<span class="item-size">260 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$195.00</span>
+          </div>
+<div class="item-note">La Greenhouse + 100 gr de pollo (tenders o tenders Arturo).</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Arturo Bowl (¡Nuevo!)<span class="item-size">100 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$169.00</span>
+          </div>
+<div class="item-note">Arroz, lechuga, frijol, elote, pico de gallo, aguacate y pechuga asada.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Extra Aguacate<span class="item-size">45 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Extra Tocino<span class="item-size">35 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$38.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Extra Mix de Quesos<span class="item-size">50 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$32.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Extra Medio Elotito</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$59.00</span>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Tito's Tríos</span>
+        <span class="cat-count">3</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">PTM · Papas, Tenders, Muslitos</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$219.00</span>
+          </div>
+<div class="item-note">Papas lemon pepper, tenders (130 gr) y 2 muslitos asados.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">PAT · Papas, Alitas, Tenders</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$219.00</span>
+          </div>
+<div class="item-note">3 alitas asadas, tenders y papas lemon pepper.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">BPT · Boneless, Papas, Tenders</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$219.00</span>
+          </div>
+<div class="item-note">130 gr de tenders + 120 gr de boneless + papas lemon pepper.</div>        </div>
+      </div>
+    </details>
+
+    <details class="menu-cat">
+      <summary>
+        <span class="cat-name">Niños, Postre y Bebidas</span>
+        <span class="cat-count">10</span>
+      </summary>
+      <div class="cat-items">
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Nuggets<span class="item-size">140 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$139.00</span>
+          </div>
+<div class="item-note">Nuggets dorados y crujientes con papas. Incluye limonada con refill.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Churro Fries Especiales<span class="item-size">200 gr</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$110.00</span>
+          </div>
+<div class="item-note">Papas de camote crujientes, azúcar, canela y nieve de vainilla.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Agua Natural<span class="item-size">500 ml</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$29.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Limonada Natural</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$55.00</span>
+          </div>
+<div class="item-note">Regular o sin azúcar. Con refill.</div>        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Limonada de Fresa<span class="item-size">470 ml</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$65.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Limonada Mineral<span class="item-size">470 ml</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$42.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Limonada Mineral<span class="item-size">1 litro</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$65.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aguas Frescas<span class="item-size">470 ml</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$39.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Aguas Frescas<span class="item-size">1 litro</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$65.00</span>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item-main">
+            <span class="item-name">Refrescos<span class="item-size">355 ml</span></span>
+            <span class="item-dots"></span>
+            <span class="item-price">$47.00</span>
+          </div>
+        </div>
+      </div>
+    </details>
+
+
+  </div>
+
+  <div class="footer-note">Tito's &middot; Alitas Adictivas del Norte &middot; Precios en MXN, incluyen IVA</div>
+
+</div>
+
+</body>
+</html>
