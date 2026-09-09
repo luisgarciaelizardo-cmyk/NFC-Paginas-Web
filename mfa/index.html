@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Montañés Fuentes Abogados</title>
+<meta name="description" content="Montañés Fuentes Abogados S.C.: WhatsApp, Instagram y correo de contacto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f0e3;
+    --bg-deep:#ecdfc4;
+    --surface:#fffdf9;
+    --navy:#1e2433;
+    --navy-deep:#12161f;
+    --gold:#b8935a;
+    --gold-deep:#8f6f3d;
+    --text:#20242f;
+    --text-soft:#7d7466;
+    --line:#e6dcc6;
+    --shadow: 30, 24, 10;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#11141c;
+      --bg-deep:#080a10;
+      --surface:#1a1e2a;
+      --navy:#e7dfcc;
+      --navy-deep:#f6f0e3;
+      --gold:#d1ac72;
+      --gold-deep:#e8c98d;
+      --text:#f0ece1;
+      --text-soft:#a79f8f;
+      --line:#2b3040;
+      --shadow: 0, 0, 0;
+    }
+  }
+
+  :root[data-theme="dark"]{
+    --bg:#11141c;
+    --bg-deep:#080a10;
+    --surface:#1a1e2a;
+    --navy:#e7dfcc;
+    --navy-deep:#f6f0e3;
+    --gold:#d1ac72;
+    --gold-deep:#e8c98d;
+    --text:#f0ece1;
+    --text-soft:#a79f8f;
+    --line:#2b3040;
+    --shadow: 0, 0, 0;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    min-height:100%;
+    background:radial-gradient(120% 100% at 50% -10%, var(--bg-deep), var(--bg) 60%);
+    font-family:'Inter', system-ui, sans-serif;
+    color:var(--text);
+  }
+
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 16px;
+  }
+
+  .card{
+    width:100%;
+    max-width:420px;
+    background:var(--surface);
+    border-radius:28px;
+    box-shadow:0 24px 50px -14px rgba(var(--shadow),0.35);
+    overflow:hidden;
+    text-align:center;
+    border:1px solid var(--line);
+  }
+
+  .accent-bar{
+    height:7px;
+    background:linear-gradient(90deg, var(--navy) 0%, var(--gold) 100%);
+  }
+
+  .header{
+    padding:34px 24px 8px;
+  }
+
+  .logo-badge img{
+    display:block;
+    width:150px;
+    height:150px;
+    margin:0 auto;
+    border-radius:50%;
+    box-shadow:0 10px 24px -8px rgba(var(--shadow),0.4);
+  }
+
+  .firm-name{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:23px;
+    line-height:1.25;
+    color:var(--navy);
+    margin:18px 0 0;
+  }
+
+  .firm-suffix{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    margin-top:6px;
+  }
+
+  .divider{
+    width:56px;
+    height:2px;
+    background:var(--gold);
+    margin:16px auto 0;
+    border-radius:2px;
+  }
+
+  .tagline{
+    font-size:13px;
+    color:var(--text-soft);
+    margin-top:14px;
+    letter-spacing:0.2px;
+  }
+
+  .links{
+    padding:24px 24px 30px;
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+  }
+
+  .link-btn{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 18px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    color:#fff;
+    transition:transform .15s ease;
+    box-shadow:0 8px 18px -8px rgba(var(--shadow),0.45);
+  }
+
+  .link-btn:active{ transform:scale(0.97); }
+
+  .link-btn .icon{
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .link-btn .icon svg{ width:19px; height:19px; fill:#fff; }
+
+  .link-btn.whatsapp{ background:linear-gradient(135deg,#2fac66,#1c7a48); }
+  .link-btn.instagram{ background:linear-gradient(135deg,#f9ce34,#ee2a7b 45%,#6228d7); }
+  .link-btn.email{ background:linear-gradient(135deg,#1e2433,#12161f); }
+
+  .footer-note{
+    padding:0 24px 24px;
+    font-size:11px;
+    letter-spacing:0.4px;
+    color:var(--text-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="accent-bar"></div>
+
+  <div class="header">
+    <div class="logo-badge">
+      <img src="../assets/mfa-logo.png" alt="Montañés Fuentes Abogados">
+    </div>
+    <p class="firm-name">Montañés Fuentes<br>Abogados</p>
+    <p class="firm-suffix">S.C.</p>
+    <div class="divider"></div>
+    <p class="tagline">Contáctanos por tu medio favorito</p>
+  </div>
+
+  <div class="links">
+
+    <a class="link-btn whatsapp" href="https://wa.me/528180167364" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.478 2 12c0 1.85.505 3.583 1.383 5.07L2 22l5.075-1.352A9.945 9.945 0 0 0 12.001 22C17.523 22 22 17.523 22 12S17.523 2 12.001 2zm0 18.06c-1.66 0-3.204-.492-4.5-1.335l-.323-.204-3.012.803.804-2.936-.21-.303A8.02 8.02 0 0 1 3.94 12c0-4.45 3.612-8.06 8.061-8.06 4.45 0 8.06 3.61 8.06 8.06 0 4.449-3.61 8.06-8.06 8.06z"/></svg>
+      </span>
+      WhatsApp
+    </a>
+
+    <a class="link-btn instagram" href="https://www.instagram.com/abogacia.mx?stkn=MWg3bzdvOWllaTliNg==" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </span>
+      Instagram
+    </a>
+
+    <a class="link-btn email" href="mailto:Montanesfuentesabogados@gmail.com">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </span>
+      <span class="label-group">Correo</span>
+    </a>
+
+  </div>
+
+  <div class="footer-note">Montañés Fuentes Abogados S.C.</div>
+
+</div>
+
+</body>
+</html>
