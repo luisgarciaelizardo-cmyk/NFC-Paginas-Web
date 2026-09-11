@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Johny's Burgers &amp; BBQ</title>
+<meta name="description" content="Johny's Burgers &amp; Barbecue: pide por WhatsApp, ubicación, Instagram, Facebook y el menú completo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121212;
+    --bg-deep:#070707;
+    --surface:#1a1a1a;
+    --red:#e2151f;
+    --red-deep:#9c0d14;
+    --cream:#f5ece0;
+    --text:#f2ece4;
+    --text-soft:#a89c8f;
+    --line:#2c2c2c;
+    --shadow: 0, 0, 0;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    min-height:100%;
+    background:var(--bg);
+    font-family:'Inter', system-ui, sans-serif;
+    color:var(--text);
+  }
+
+  body{
+    display:flex;
+    justify-content:center;
+    padding:0 0 40px;
+  }
+
+  .page{
+    width:100%;
+    max-width:460px;
+  }
+
+  .accent-bar{
+    height:8px;
+    background:linear-gradient(90deg, var(--red-deep) 0%, var(--red) 100%);
+  }
+
+  .header{
+    text-align:center;
+    padding:28px 24px 8px;
+  }
+
+  .logo-badge{
+    display:inline-block;
+    background:#ffffff;
+    border-radius:26px;
+    padding:14px 18px;
+    box-shadow:0 12px 26px -8px rgba(0,0,0,0.6);
+  }
+
+  .logo-badge img{
+    display:block;
+    width:150px;
+    max-width:52vw;
+    height:auto;
+    margin:0 auto;
+  }
+
+  .tagline{
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.6px;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    margin-top:14px;
+  }
+
+  .quick-links{
+    padding:16px 20px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .qlink{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:13px 18px;
+    border-radius:18px;
+    text-decoration:none;
+    font-weight:700;
+    font-size:15px;
+    color:#fff;
+    transition:transform .15s ease;
+    box-shadow:0 8px 18px -6px rgba(var(--shadow),0.5);
+  }
+
+  .qlink:active{ transform:scale(0.97); }
+
+  .qlink .icon{
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .qlink .icon svg{ width:19px; height:19px; fill:#fff; }
+
+  .qlink.whatsapp{ background:linear-gradient(135deg,#2fbf71,#1a9c58); }
+  .qlink.location{ background:linear-gradient(135deg,var(--red),var(--red-deep)); }
+  .qlink.facebook{ background:linear-gradient(135deg,#1f78c9,#12466e); }
+  .qlink.instagram{ background:linear-gradient(135deg,#f9ce34,#ee2a7b 45%,#6228d7); }
+
+  .menu-section{
+    padding:8px 0 0;
+  }
+
+  .menu-title{
+    font-family:'Archivo', sans-serif;
+    font-weight:900;
+    font-size:26px;
+    text-align:center;
+    color:var(--red);
+    margin:12px 20px 4px;
+    text-transform:uppercase;
+  }
+
+  .menu-subtitle{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--text-soft);
+    margin:0 20px 14px;
+  }
+
+  .menu-carousel{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    gap:14px;
+    padding:4px 20px 12px;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .menu-carousel::-webkit-scrollbar{ height:6px; }
+  .menu-carousel::-webkit-scrollbar-thumb{ background:var(--line); border-radius:3px; }
+
+  .menu-page{
+    flex:0 0 82%;
+    scroll-snap-align:center;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 14px 30px -14px rgba(0,0,0,0.6);
+    background:var(--surface);
+  }
+
+  .menu-page img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+
+  .menu-dots{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    padding:2px 20px 4px;
+  }
+
+  .menu-dots span{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--line);
+  }
+
+  .footer-note{
+    text-align:center;
+    padding:24px 24px 6px;
+    font-size:11.5px;
+    letter-spacing:0.3px;
+    color:var(--text-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="accent-bar"></div>
+
+  <div class="header">
+    <div class="logo-badge">
+      <img src="../assets/johnys-logo.png" alt="Johny's Burgers &amp; Barbecue">
+    </div>
+    <p class="tagline">Burgers &amp; Barbecue</p>
+  </div>
+
+  <div class="quick-links">
+
+    <a class="qlink whatsapp" href="https://wa.me/528444566702" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.478 2 12c0 1.85.505 3.583 1.383 5.07L2 22l5.075-1.352A9.945 9.945 0 0 0 12.001 22C17.523 22 22 17.523 22 12S17.523 2 12.001 2zm0 18.06c-1.66 0-3.204-.492-4.5-1.335l-.323-.204-3.012.803.804-2.936-.21-.303A8.02 8.02 0 0 1 3.94 12c0-4.45 3.612-8.06 8.061-8.06 4.45 0 8.06 3.61 8.06 8.06 0 4.449-3.61 8.06-8.06 8.06z"/></svg>
+      </span>
+      Pide por WhatsApp
+    </a>
+
+    <a class="qlink location" href="https://maps.app.goo.gl/1y4LAzUUH4simdsBA" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      </span>
+      Ubicación
+    </a>
+
+    <a class="qlink instagram" href="https://www.instagram.com/johnys_burgers_bbq/" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </span>
+      Instagram
+    </a>
+
+    <a class="qlink facebook" href="https://www.facebook.com/JohnysBurgerBBQ" target="_blank" rel="noopener">
+      <span class="icon">
+        <svg viewBox="0 0 24 24"><path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.508 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.877h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94z"/></svg>
+      </span>
+      Facebook
+    </a>
+
+  </div>
+
+  <div class="menu-section">
+    <p class="menu-title">Menú</p>
+    <p class="menu-subtitle">Desliza para ver las 3 páginas completas</p>
+
+    <div class="menu-carousel">
+      <div class="menu-page"><img src="../assets/johnys-menu/page-01.jpg" alt="Menú Johny's página 1" loading="lazy"></div>
+      <div class="menu-page"><img src="../assets/johnys-menu/page-02.jpg" alt="Menú Johny's página 2" loading="lazy"></div>
+      <div class="menu-page"><img src="../assets/johnys-menu/page-03.jpg" alt="Menú Johny's página 3" loading="lazy"></div>
+    </div>
+
+    <div class="menu-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="footer-note">Johny's &middot; Burgers &amp; Barbecue</div>
+
+</div>
+
+</body>
+</html>
