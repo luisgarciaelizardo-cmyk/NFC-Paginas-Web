@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFC · Technology Family Company</title>
+<link rel="icon" href="../assets/tfc-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0a1420;
+    --navy-2:#0f1e30;
+    --navy-3:#152b45;
+    --blue:#0d6fd1;
+    --blue-2:#2f9bff;
+    --blue-soft:#8fb4e0;
+    --ink-soft:#93a6bf;
+    --white:#ffffff;
+    --card-bg:rgba(255,255,255,0.045);
+    --card-border:rgba(255,255,255,0.09);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--navy);
+    color:var(--white);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- background mesh ---------- */
+  .bg-mesh{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(1100px 700px at 15% -10%, rgba(13,111,209,0.35), transparent 60%),
+      radial-gradient(900px 600px at 100% 10%, rgba(47,155,255,0.18), transparent 55%),
+      radial-gradient(800px 800px at 50% 120%, rgba(13,111,209,0.20), transparent 60%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 45%, var(--navy) 100%);
+  }
+  .grid-overlay{
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.35;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(900px 600px at 50% 0%, #000 10%, transparent 75%);
+  }
+
+  main{position:relative; z-index:1;}
+
+  /* ---------- header ---------- */
+  header{
+    display:flex; align-items:center; justify-content:center;
+    padding:26px 20px 6px;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand img{height:34px; width:auto; display:block;}
+  .brand span{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15px; letter-spacing:2px; color:var(--blue-soft);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:760px; margin:0 auto; padding:38px 22px 44px; text-align:center;
+  }
+  .hero .tap-arcs{width:96px; height:96px; margin:0 auto 20px;}
+  .hero-logo{
+    width:min(78vw, 300px); height:auto; margin:0 auto 22px; display:block;
+    filter:drop-shadow(0 18px 40px rgba(13,111,209,0.35));
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:700; letter-spacing:3px; color:var(--blue-2);
+    background:rgba(13,111,209,0.12); border:1px solid rgba(47,155,255,0.28);
+    padding:7px 16px; border-radius:999px; margin-bottom:20px;
+  }
+  .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue-2); box-shadow:0 0 10px var(--blue-2);}
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(28px, 5.6vw, 44px);
+    line-height:1.15; font-weight:700; margin:0 0 16px;
+    letter-spacing:-0.5px;
+  }
+  h1 .accent{
+    background:linear-gradient(90deg, var(--blue-2), #7fd4ff);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{
+    font-size:16px; line-height:1.65; color:var(--ink-soft); max-width:520px; margin:0 auto 30px;
+  }
+  .hero-ctas{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:12px; font-weight:700; font-size:14.5px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--blue), var(--blue-2));
+    color:#fff; box-shadow:0 10px 28px rgba(13,111,209,0.4);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 34px rgba(13,111,209,0.5);}
+  .btn-ghost{
+    background:rgba(255,255,255,0.06); color:#fff; border:1px solid rgba(255,255,255,0.14);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,0.1); transform:translateY(-2px);}
+
+  /* ---------- stats ---------- */
+  .stats{
+    max-width:760px; margin:0 auto; padding:0 22px 10px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+  }
+  .stat{
+    background:var(--card-bg); border:1px solid var(--card-border); border-radius:16px;
+    padding:18px 10px; text-align:center; backdrop-filter:blur(6px);
+  }
+  .stat b{
+    display:block; font-family:'Space Grotesk', sans-serif; font-size:26px; font-weight:700;
+    background:linear-gradient(90deg,#fff,var(--blue-soft)); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .stat span{font-size:11.5px; color:var(--ink-soft); letter-spacing:.4px;}
+
+  /* ---------- section ---------- */
+  .section{max-width:1080px; margin:0 auto; padding:64px 22px 20px;}
+  .section-head{text-align:center; margin-bottom:34px;}
+  .section-head h2{
+    font-family:'Space Grotesk', sans-serif; font-size:clamp(22px,4vw,30px); margin:0 0 10px; font-weight:700;
+  }
+  .section-head p{color:var(--ink-soft); font-size:14.5px; max-width:480px; margin:0 auto;}
+
+  /* ---------- grid of businesses ---------- */
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:16px;
+  }
+  .card{
+    background:var(--card-bg); border:1px solid var(--card-border); border-radius:18px;
+    padding:22px 18px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px;
+    transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    position:relative; overflow:hidden;
+  }
+  .card::before{
+    content:''; position:absolute; inset:0; opacity:0; transition:opacity .18s ease;
+    background:radial-gradient(120px 90px at 50% 0%, rgba(47,155,255,0.22), transparent 70%);
+  }
+  .card:hover{
+    transform:translateY(-4px); border-color:rgba(47,155,255,0.45);
+    background:rgba(255,255,255,0.07); box-shadow:0 16px 32px rgba(5,15,30,0.45);
+  }
+  .card:hover::before{opacity:1;}
+  .badge{
+    width:76px; height:76px; border-radius:18px; background:#fff;
+    display:flex; align-items:center; justify-content:center; padding:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.28); flex-shrink:0;
+  }
+  .badge img{max-width:100%; max-height:100%; object-fit:contain;}
+  .badge.placeholder{
+    background:linear-gradient(135deg, var(--navy-3), var(--navy-2));
+    border:1px dashed rgba(255,255,255,0.25);
+  }
+  .badge.placeholder span{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:22px; color:var(--blue-2);
+  }
+  .card h3{font-size:14.5px; font-weight:700; margin:0; line-height:1.3;}
+  .card .tag{font-size:11px; color:var(--ink-soft); letter-spacing:.3px;}
+  .card .go{
+    margin-top:2px; font-size:12.5px; font-weight:700; color:var(--blue-2);
+    display:inline-flex; align-items:center; gap:5px;
+  }
+  .card .go svg{width:13px; height:13px; transition:transform .15s ease;}
+  .card:hover .go svg{transform:translateX(3px);}
+
+  /* ---------- footer ---------- */
+  footer{
+    max-width:760px; margin:40px auto 0; padding:34px 22px 44px; text-align:center;
+    border-top:1px solid var(--card-border);
+  }
+  footer .flogo{display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:14px;}
+  footer .flogo img{height:26px;}
+  footer .flogo span{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; letter-spacing:2px; color:var(--blue-soft);}
+  footer p{color:var(--ink-soft); font-size:12.5px; margin:4px 0; line-height:1.6;}
+  footer a.contact{color:var(--blue-2); font-weight:700;}
+
+  @media (max-width:480px){
+    .stats{grid-template-columns:repeat(3,1fr); gap:8px;}
+    .stat{padding:14px 6px;}
+    .stat b{font-size:20px;}
+    .grid{grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:12px;}
+    .card{padding:16px 10px;}
+    .badge{width:62px; height:62px; border-radius:14px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+<div class="grid-overlay"></div>
+
+<main>
+  <header>
+    <div class="brand">
+      <img src="../assets/tfc-icon.png" alt="TFC">
+      <span>TFC</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <svg class="tap-arcs" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke-linecap="round">
+        <circle cx="82" cy="118" r="10" fill="#2f9bff"/>
+        <path d="M 76,96 A 26,26 0 0 1 108,110" stroke="#2f9bff" stroke-width="8" opacity="0.95"/>
+        <path d="M 70,74 A 48,48 0 0 1 132,100" stroke="#5fb4ff" stroke-width="8" opacity="0.7"/>
+        <path d="M 64,52 A 70,70 0 0 1 156,90" stroke="#8fcaff" stroke-width="8" opacity="0.45"/>
+      </g>
+    </svg>
+
+    <img class="hero-logo" src="../assets/tfc-logo.png" alt="TFC — Technology Family Company">
+
+    <div class="eyebrow">TARJETAS DIGITALES NFC</div>
+    <h1>Conectamos negocios con <span class="accent">un solo toque</span></h1>
+    <p class="lead">Somos TFC, Technology Family Company. Diseñamos e instalamos tarjetas y páginas digitales NFC para negocios de Saltillo y Piedras Negras — ideas que nos conectan.</p>
+
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#negocios">
+        Ver negocios conectados
+      </a>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><b>13</b><span>NEGOCIOS ACTIVOS</span></div>
+    <div class="stat"><b>2</b><span>CIUDADES</span></div>
+    <div class="stat"><b>100%</b><span>SIN CONTACTO</span></div>
+  </div>
+
+  <section class="section" id="negocios">
+    <div class="section-head">
+      <h2>Negocios que ya se conectaron</h2>
+      <p>Toca cualquier tarjeta para abrir la página digital del negocio.</p>
+    </div>
+
+    <div class="grid">
+
+      <a class="card" href="https://tunegocionfc.systeme.io/d78da395" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/aqua-medik-logo.png" alt="Aqua Medik"></div>
+        <h3>Aqua Medik</h3>
+        <span class="tag">Salud &amp; bienestar</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/a18e8481" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/vicasa-logo.png" alt="Vicasa"></div>
+        <h3>Vicasa</h3>
+        <span class="tag">Hogar</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/a4b43547" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/sonrie-logo.png" alt="Sonríe"></div>
+        <h3>Sonríe</h3>
+        <span class="tag">Salud dental</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/341d003e" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/morapan-logo.png" alt="Mora Pan"></div>
+        <h3>Mora Pan</h3>
+        <span class="tag">Panadería</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/8338befe" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/revolver-logo.png" alt="Revolver Bar y Cantina"></div>
+        <h3>Revolver Bar y Cantina</h3>
+        <span class="tag">Bar &amp; cantina</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/ca52d18d" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/davila-logo.png" alt="Clínica Veterinaria Dr. Jorge Dávila"></div>
+        <h3>Clínica Veterinaria Dr. Jorge Dávila</h3>
+        <span class="tag">Veterinaria</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/37cae45f" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/titos-logo.png" alt="Tito's"></div>
+        <h3>Tito's</h3>
+        <span class="tag">Restaurante</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/b98f2d7e" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/mfa-logo.png" alt="Montañés Fuentes Abogados S.C."></div>
+        <h3>Montañés Fuentes Abogados S.C.</h3>
+        <span class="tag">Despacho legal</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/c6d8f15d" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/losadobes-logo.png" alt="Los Adobes"></div>
+        <h3>Los Adobes</h3>
+        <span class="tag">Restaurante</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/a1efc7b1" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/johnys-logo.png" alt="Johny's Burgers & BBQ"></div>
+        <h3>Johny's Burgers &amp; BBQ</h3>
+        <span class="tag">Restaurante</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/45d5e91d" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/quequito-logo.png" alt="Quequito Express"></div>
+        <h3>Quequito Express</h3>
+        <span class="tag">Antojitos</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/39d660d5" target="_blank" rel="noopener">
+        <div class="badge placeholder"><span>EP</span></div>
+        <h3>El Papalote Taco &amp; Grill</h3>
+        <span class="tag">Restaurante</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <a class="card" href="https://tunegocionfc.systeme.io/7574a2f0" target="_blank" rel="noopener">
+        <div class="badge"><img src="../assets/elrapido-logo.png" alt="Taquería El Rápido"></div>
+        <h3>Taquería El Rápido</h3>
+        <span class="tag">Restaurante</span>
+        <span class="go">Ver página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="flogo">
+      <img src="../assets/tfc-icon.png" alt="TFC">
+      <span>TECHNOLOGY FAMILY COMPANY</span>
+    </div>
+    <p>Ideas que nos conectan.</p>
+    <p>¿Quieres tu propia tarjeta digital NFC? Pregúntanos cómo conectar tu negocio.</p>
+  </footer>
+</main>
+
+</body>
+</html>
